@@ -7,12 +7,12 @@ import java.util.Set;
 
 /**
  *
- * Esta classe fornece funcionalidade para gerar todos os anagramas possíveis
- * a partir de um conjunto de letras distintas. Inclui validação para garantir
- * que a entrada seja válida (não vazia e contendo apenas letras).
+ * O codigo proporciona gerar todos os anagramas possíveis
+ * a partir de um conjunto de letras distintas. Incluindo validação para garantir
+ * que a entrada seja válida! (não vazia e sendo apenas letras).
  */
 public class AnagramGenerator {
-
+    //O metodo ira receber char, pois char é mutavel e pode ser modificado... Mas se fosse String teria que ficar criando uma nova String.
     public List<String> generateAnagrams(char[] letters) {
         validateInput(letters);
 
@@ -43,6 +43,7 @@ public class AnagramGenerator {
     }
 
    //Método auxiliar para gerar anagramas usando backtracking.
+    //Aqui o fluxo funcina como se fosse -> “Tenta algo, vê no que dá, e se não der, volta atrás e tenta de novo de outro jeito.”
     private void generateAnagramsHelper(char[] letters, int start, Set<String> result) {
         if (start == letters.length - 1) {
             result.add(new String(letters));

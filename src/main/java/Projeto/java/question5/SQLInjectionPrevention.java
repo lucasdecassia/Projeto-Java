@@ -10,64 +10,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class demonstrates techniques to prevent SQL injection attacks in web applications.
+ * Os codigos demonstra técnicas para prevenir ataques de injeção SQL.
  * 
- * SQL Injection is a code injection technique that exploits vulnerabilities in applications
- * that interact with databases. It occurs when user input is directly incorporated into SQL
- * queries without proper validation or sanitization.
+ * Injeção SQL é uma técnica de injeção de código que explora vulnerabilidades em aplicações
+ * que interagem com bancos de dados. Ocorre quando a entrada do usuário é incorporada diretamente
+ * em consultas SQL sem validação ou sanitização adequada.
  */
 public class SQLInjectionPrevention {
 
-    // Database connection parameters (for demonstration only)
+    // Parâmetros de conexão com o banco de dados (apenas para demonstração)
     private static final String DB_URL = "jdbc:mysql://localhost:3306/mydb";
     private static final String DB_USER = "username";
     private static final String DB_PASSWORD = "password";
-    
+
+
     /**
-     * Main method to demonstrate SQL injection prevention techniques.
+     * Método principal para demonstrar técnicas de prevenção de injeção SQL.
      */
     public static void main(String[] args) {
-        // Example of a malicious input that could be used for SQL injection
+        // Uma entrada maliciosa que poderia ser usada
         String maliciousUsername = "admin' OR '1'='1";
-        
-        // Demonstrate vulnerable code vs. secure code
-        System.out.println("Vulnerable query would be: " + buildVulnerableQuery(maliciousUsername));
-        System.out.println("Secure query uses parameterized statements instead");
-        
-        // Demonstrate secure methods
+
+        // Código vulnerável vs. código seguro
+        System.out.println("A consulta vulnerável seria: " + buildVulnerableQuery(maliciousUsername));
+        System.out.println("A consulta segura usa declarações parametrizadas em vez disso");
+
+        // Métodos seguros
         try {
             List<User> users = findUsersByUsernameSecure(maliciousUsername);
-            System.out.println("Found " + users.size() + " users (should be 0 with malicious input)");
+            System.out.println("Encontrados " + users.size() + " usuários (deve ser 0 com entrada maliciosa)");
         } catch (SQLException e) {
-            System.err.println("Database error: " + e.getMessage());
+            System.err.println("Erro de banco de dados: " + e.getMessage());
         }
     }
-    
+
     /**
-     * VULNERABLE CODE - DO NOT USE!
-     * This method demonstrates how NOT to build SQL queries.
-     * It directly concatenates user input into the SQL string, making it vulnerable to SQL injection.
+     * O método demonstra como NÃO construir consultas SQL.
+     * Ele concatena diretamente a entrada do usuário na string SQL, tornando vulnerável a injeção SQL.
      */
     private static String buildVulnerableQuery(String username) {
-        // NEVER DO THIS IN REAL CODE!
         return "SELECT * FROM users WHERE username = '" + username + "'";
     }
-    
+
     /**
-     * VULNERABLE CODE - DO NOT USE!
-     * This method demonstrates an insecure way to query the database.
-     * It is vulnerable to SQL injection attacks.
+     * O método demonstra uma maneira insegura de consultar o banco de dados.
+     * É vulnerável a ataques de injeção SQL.
      */
     public static List<User> findUsersByUsernameVulnerable(String username) throws SQLException {
         List<User> users = new ArrayList<>();
-        
-        // NEVER DO THIS IN REAL CODE!
+
         String sql = "SELECT * FROM users WHERE username = '" + username + "'";
-        
+
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            
+
             while (rs.next()) {
                 User user = new User();
                 user.setId(rs.getLong("id"));
@@ -76,27 +73,26 @@ public class SQLInjectionPrevention {
                 users.add(user);
             }
         }
-        
+
         return users;
     }
-    
+
     /**
-     * SECURE CODE - RECOMMENDED APPROACH
-     * This method demonstrates a secure way to query the database using parameterized queries.
-     * It prevents SQL injection by separating the SQL command from the data.
+     * O método demonstra uma maneira segura de consultar o banco de dados usando consultas parametrizadas.
+     * Ele previne a injeção SQL separando o comando SQL dos dados.
      */
     public static List<User> findUsersByUsernameSecure(String username) throws SQLException {
         List<User> users = new ArrayList<>();
-        
-        // Secure SQL with parameterized query
+
+        // SQL seguro com consulta parametrizada
         String sql = "SELECT * FROM users WHERE username = ?";
-        
+
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            // Set parameters safely - this prevents SQL injection
+
+            // Define parâmetros com segurança - isso previne injeção SQL
             pstmt.setString(1, username);
-            
+
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     User user = new User();
@@ -107,29 +103,29 @@ public class SQLInjectionPrevention {
                 }
             }
         }
-        
+
         return users;
     }
-    
+
     /**
-     * Example of using a hypothetical ORM (like Hibernate/JPA) for secure database access.
-     * ORMs typically handle parameterization automatically, providing protection against SQL injection.
+     * O uso de um ORM hipotético (como Hibernate/JPA) para acesso seguro ao banco de dados.
+     * ORMs normalmente lidam com parametrização automaticamente, fornecendo proteção contra injeção SQL.
      */
     public static List<User> findUsersByUsernameWithORM(String username) {
-        // This is pseudocode to demonstrate how an ORM would be used
-        // In a real application, you would use JPA/Hibernate or another ORM
-        
+        // Este é um pseudocódigo para demonstrar como um ORM seria usado
+        // Em uma aplicação real, você usaria JPA/Hibernate ou outro ORM
+
         /*
-        // Using JPA
+        // Usando JPA
         EntityManager em = entityManagerFactory.createEntityManager();
         TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
         query.setParameter("username", username);
         return query.getResultList();
-        
-        // Using Spring Data JPA
+
+        // Usando Spring Data JPA
         return userRepository.findByUsername(username);
-        
-        // Using Hibernate Criteria API
+
+        // Usando Hibernate Criteria API
         Session session = sessionFactory.openSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<User> cr = cb.createQuery(User.class);
@@ -137,81 +133,49 @@ public class SQLInjectionPrevention {
         cr.select(root).where(cb.equal(root.get("username"), username));
         return session.createQuery(cr).getResultList();
         */
-        
-        // Placeholder return for this example
+
+        // Retorno de espaço reservado para este exemplo
         return new ArrayList<>();
     }
-    
+
     /**
-     * Additional SQL Injection Prevention Techniques:
+     * Técnicas de Prevenção de Injeção SQL ->
      * 
-     * 1. Input Validation:
-     *    - Validate all user inputs against a whitelist of allowed characters
-     *    - Reject inputs that contain suspicious SQL characters (', ", --, #, etc.)
+     * 1. Validação de Entrada:
+     *    - Validar todas as entradas do usuário contra uma lista branca de caracteres permitidos
+     *    - Rejeitar entradas que contenham caracteres SQL suspeitos (', ", --, #, etc.)
      * 
-     * 2. Use Prepared Statements:
-     *    - Always use parameterized queries (PreparedStatement in JDBC)
-     *    - Never concatenate user input directly into SQL strings
+     * 2. Declarações Preparadas:
+     *    - usar sempre consultas parametrizadas (PreparedStatement em JDBC)
+     *    - Não concatenar a entrada do usuário diretamente em strings SQL
      * 
-     * 3. Use ORMs:
-     *    - Frameworks like Hibernate, JPA, or Spring Data automatically parameterize queries
-     *    - They provide an additional layer of protection
+     * 3. ORMs:
+     *    - Frameworks como Hibernate, JPA ou Spring Data parametrizam consultas automaticamente
+     *    - Eles fornecem uma camada adicional de proteção
      * 
-     * 4. Stored Procedures:
-     *    - Use stored procedures with parameterized inputs
-     *    - This limits the SQL that can be executed
+     * 4. Procedimentos Armazenados:
+     *    - O uso de procedimentos armazenados com entradas parametrizadas
+     *    - Isso limita o SQL que pode ser executado
      * 
-     * 5. Principle of Least Privilege:
-     *    - Use database accounts with minimal permissions needed for the application
-     *    - Restrict database user permissions to only what's necessary
+     * 5. Princípio do Menor Privilégio:
+     *    - Contas de banco de dados com permissões mínimas necessárias para a aplicação
+     *    - Restrinjir as permissões do usuário do banco de dados apenas ao que é necessário
      * 
-     * 6. Error Handling:
-     *    - Implement proper error handling to prevent detailed error messages from being exposed
-     *    - Use custom error pages that don't reveal database information
+     * 6. Tratamento de Erros:
+     *    - Implementar tratamento adequado de erros para evitar que mensagens detalhadas sejam expostas
+     *    - Páginas de erro personalizadas que não revelem informações do banco de dados
      * 
-     * 7. Use Query Builders:
-     *    - Libraries like QueryDSL or JOOQ provide type-safe SQL building
+     * 7. Construtores de Consultas:
+     *    - Bibliotecas como QueryDSL ou JOOQ fornecem construção de SQL com segurança de tipo
      * 
-     * 8. Database Firewalls:
-     *    - Consider using a Web Application Firewall (WAF) or database firewall
-     *    - These can detect and block SQL injection attempts
+     * 8. Firewalls de Banco de Dados:
+     *    - Considerar usar um Firewall de Aplicação Web (WAF) ou firewall de banco de dados
+     *    - Estes podem detectar e bloquear tentativas de injeção SQL
      * 
-     * 9. Regular Security Audits:
-     *    - Regularly review code for security vulnerabilities
-     *    - Use static code analysis tools to detect potential SQL injection points
+     * 9. Auditorias de Segurança Regulares:
+     *    - Revisar regularmente o código em busca de vulnerabilidades de segurança
+     *    - Ferramentas de análise estática de código para detectar pontos potenciais de injeção SQL
      */
-    
-    /**
-     * Simple User class for demonstration purposes.
-     */
-    public static class User {
-        private Long id;
-        private String username;
-        private String email;
-        
-        // Getters and setters
-        public Long getId() {
-            return id;
-        }
-        
-        public void setId(Long id) {
-            this.id = id;
-        }
-        
-        public String getUsername() {
-            return username;
-        }
-        
-        public void setUsername(String username) {
-            this.username = username;
-        }
-        
-        public String getEmail() {
-            return email;
-        }
-        
-        public void setEmail(String email) {
-            this.email = email;
-        }
-    }
+
+
 }

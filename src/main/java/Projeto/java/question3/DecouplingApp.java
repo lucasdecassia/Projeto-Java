@@ -7,23 +7,21 @@ package Projeto.java.question3;
 public class DecouplingApp {
 
     public static void main(String[] args) {
-        PaymentProcessor paymentProcessor = new PayPalPaymentAdapter();
+        PaymentProcessor payPalPaymentAdapter = new PayPalPaymentAdapter();
 
-        boolean success = paymentProcessor.processPayment("BankJava", 100.0);
+        boolean success = payPalPaymentAdapter.processPayment("BankJava", 100.0);
         System.out.println("Pagamento processado com sucesso: " + success);
 
-        paymentProcessor = new StripePaymentAdapter();
+        PaymentProcessor externalLibAdapter = new ExternalLibAdapter();
 
-        success = paymentProcessor.processPayment("BankJava", 100.0);
+        success = externalLibAdapter.processPayment("BankJava", 100.0);
         System.out.println("Pagamento processado com sucesso com novo provedor: " + success);
      }
     }
 
     /**
      * 
-     * 1. O código de aplicação depende da interface PaymentProcessor, não das bibliotecas de terceiros.
-     * 2. Facilmente pode alternar entre diferentes provedores de pagamento criando novos adaptadores.
-     * 3. Código específico de bibliotecas de terceiros é isolado nas classes adaptadoras.
-     * 4. Mudanças nas bibliotecas de terceiros afetam apenas as classes adaptadoras.
+     * 1. O código de aplicação depende da interface PaymentProcessor, onde pode obtar por meio de um adaptador.
+     * 2. Facilmente pode alternar entre diferentes provedores de pagamento criando novos adaptadores, pois é so implementar a interface de contrato.
      */
 

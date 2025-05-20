@@ -1,11 +1,11 @@
--- Question 7: SQL Queries based on the provided tables
+-- Consultas SQL baseadas nas tabelas fornecidas
 
--- Tables:
+-- Tabelas:
 -- Salesperson (ID, Nome, Idade, Salário)
 -- Customer (ID, Nome, Cidade, Tipo de Indústria)
 -- Orders (ID, Data do Pedido, ID Cliente, ID Vendedor, Valor)
 
--- a) Return the names of all salespeople who have not made any orders for the customer Samsonic.
+-- a) Retornar os nomes de todos os vendedores que não fizeram nenhum pedido para o cliente Samsonic.
 SELECT s.Nome
 FROM Salesperson s
 WHERE s.ID NOT IN (
@@ -15,14 +15,14 @@ WHERE s.ID NOT IN (
     WHERE c.Nome = 'Samsonic'
 );
 
--- Alternative solution using LEFT JOIN
+-- Solução alternativa usando LEFT JOIN
 SELECT DISTINCT s.Nome
 FROM Salesperson s
 LEFT JOIN Orders o ON s.ID = o.ID_Vendedor
 LEFT JOIN Customer c ON o.ID_Cliente = c.ID AND c.Nome = 'Samsonic'
 WHERE c.ID IS NULL;
 
--- b) Update the names of salespeople who have 2 or more orders, adding an asterisk (*) at the end of the name.
+-- b) Atualizar os nomes dos vendedores que têm 2 ou mais pedidos, adicionando um asterisco (*) no final do nome.
 UPDATE Salesperson
 SET Nome = CONCAT(Nome, '*')
 WHERE ID IN (
@@ -32,7 +32,7 @@ WHERE ID IN (
     HAVING COUNT(*) >= 2
 );
 
--- c) Delete all salespeople who have made orders for the city of Jackson.
+-- c) Excluir todos os vendedores que fizeram pedidos para a cidade de Jackson.
 DELETE FROM Salesperson
 WHERE ID IN (
     SELECT o.ID_Vendedor
@@ -41,29 +41,29 @@ WHERE ID IN (
     WHERE c.Cidade = 'Jackson'
 );
 
--- d) Show the total sales value for each salesperson. If the salesperson has not made any sales, show zero.
+-- d) Mostrar o valor total de vendas para cada vendedor. Se o vendedor não fez nenhuma venda, mostrar zero.
 SELECT s.ID, s.Nome, COALESCE(SUM(o.Valor), 0) AS Total_Vendas
 FROM Salesperson s
 LEFT JOIN Orders o ON s.ID = o.ID_Vendedor
 GROUP BY s.ID, s.Nome
 ORDER BY s.ID;
 
--- Explanation of the queries:
+-- Explicação das consultas:
 
--- Query a: This query finds salespeople who have not made orders for Samsonic.
--- It uses a subquery to find all salespeople IDs that have orders for Samsonic,
--- and then selects all salespeople whose IDs are not in that list.
--- The alternative solution uses LEFT JOIN to achieve the same result.
+-- Consulta a: Esta consulta encontra vendedores que não fizeram pedidos para Samsonic.
+-- Ela usa uma subconsulta para encontrar todos os IDs de vendedores que têm pedidos para Samsonic,
+-- e então seleciona todos os vendedores cujos IDs não estão nessa lista.
+-- A solução alternativa usa LEFT JOIN para alcançar o mesmo resultado.
 
--- Query b: This query updates the names of salespeople who have 2 or more orders.
--- It uses a subquery to find all salespeople IDs that have at least 2 orders,
--- and then updates the names of those salespeople by adding an asterisk at the end.
+-- Consulta b: Esta consulta atualiza os nomes dos vendedores que têm 2 ou mais pedidos.
+-- Ela usa uma subconsulta para encontrar todos os IDs de vendedores que têm pelo menos 2 pedidos,
+-- e então atualiza os nomes desses vendedores adicionando um asterisco no final.
 
--- Query c: This query deletes all salespeople who have made orders for customers in Jackson.
--- It uses a subquery to find all salespeople IDs that have orders for customers in Jackson,
--- and then deletes those salespeople from the Salesperson table.
+-- Consulta c: Esta consulta exclui todos os vendedores que fizeram pedidos para clientes em Jackson.
+-- Ela usa uma subconsulta para encontrar todos os IDs de vendedores que têm pedidos para clientes em Jackson,
+-- e então exclui esses vendedores da tabela Salesperson.
 
--- Query d: This query shows the total sales value for each salesperson.
--- It uses a LEFT JOIN to include all salespeople, even those who have not made any sales.
--- The COALESCE function is used to replace NULL values with 0 for salespeople with no sales.
--- The results are grouped by salesperson ID and name, and ordered by salesperson ID.
+-- Consulta d: Esta consulta mostra o valor total de vendas para cada vendedor.
+-- Ela usa um LEFT JOIN para incluir todos os vendedores, mesmo aqueles que não fizeram nenhuma venda.
+-- A função COALESCE é usada para substituir valores NULL por 0 para vendedores sem vendas.
+-- Os resultados são agrupados por ID e nome do vendedor, e ordenados por ID do vendedor.

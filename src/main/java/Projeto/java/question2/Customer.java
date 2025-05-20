@@ -21,7 +21,7 @@ public class Customer {
 
 
     /**
-     * Sobrescrever equals() é necessário quando:
+     * Sobrescrever equals() é bom quando:
      * 1. Objetos precisam ser comparados com base em sua igualdade lógica em vez de igualdade de referência
      * 2. Objetos que são usados como chaves em coleções baseadas em hash (HashMap, HashSet)
      * 3. Objetos são comparados em coleções como ArrayList, LinkedList

@@ -12,88 +12,71 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Anagram Generator Tests")
+@DisplayName("Testes do Gerador de Anagramas")
 class AnagramGeneratorTest {
 
     private final AnagramGenerator anagramGenerator = new AnagramGenerator();
 
     @Test
-    @DisplayName("Should generate all anagrams for 'abc'")
+    @DisplayName("Deve gerar todos os anagramas para 'abc'")
     void shouldGenerateAllAnagramsForAbc() {
-        // Given
         String input = "abc";
 
-        // When
         List<String> anagrams = anagramGenerator.generateAnagrams(input);
 
-        // Then
-        assertThat(anagrams, hasSize(6)); // 3! = 6 permutations
+        assertThat(anagrams, hasSize(6)); // 3! = 6 permutações
         assertThat(anagrams, containsInAnyOrder("abc", "acb", "bac", "bca", "cab", "cba"));
     }
 
     @Test
-    @DisplayName("Should generate all anagrams for 'ab'")
+    @DisplayName("Deve gerar todos os anagramas para 'ab'")
     void shouldGenerateAllAnagramsForAb() {
-        // Given
         String input = "ab";
 
-        // When
         List<String> anagrams = anagramGenerator.generateAnagrams(input);
 
-        // Then
-        assertThat(anagrams, hasSize(2)); // 2! = 2 permutations
+        assertThat(anagrams, hasSize(2)); // 2! = 2 permutações
         assertThat(anagrams, containsInAnyOrder("ab", "ba"));
     }
 
     @Test
-    @DisplayName("Should generate one anagram for a single letter")
+    @DisplayName("Deve gerar um anagrama para uma única letra")
     void shouldGenerateOneAnagramForSingleLetter() {
-        // Given
         String input = "a";
 
-        // When
         List<String> anagrams = anagramGenerator.generateAnagrams(input);
 
-        // Then
         assertThat(anagrams, hasSize(1));
         assertThat(anagrams, contains("a"));
     }
 
     @Test
-    @DisplayName("Should handle uppercase letters correctly")
+    @DisplayName("Deve lidar corretamente com letras maiúsculas")
     void shouldHandleUppercaseLettersCorrectly() {
-        // Given
         String input = "ABC";
 
-        // When
         List<String> anagrams = anagramGenerator.generateAnagrams(input);
 
-        // Then
-        assertThat(anagrams, hasSize(6)); // 3! = 6 permutations
+        assertThat(anagrams, hasSize(6)); // 3! = 6 permutações
         assertThat(anagrams, containsInAnyOrder("ABC", "ACB", "BAC", "BCA", "CAB", "CBA"));
     }
 
     @Test
-    @DisplayName("Should handle mixed case letters correctly")
+    @DisplayName("Deve lidar corretamente com letras de caso misto")
     void shouldHandleMixedCaseLettersCorrectly() {
-        // Given
         String input = "AbC";
 
-        // When
         List<String> anagrams = anagramGenerator.generateAnagrams(input);
 
-        // Then
-        assertThat(anagrams, hasSize(6)); // 3! = 6 permutations
+        assertThat(anagrams, hasSize(6)); // 3! = 6 permutações
         assertThat(anagrams, containsInAnyOrder("AbC", "ACb", "bAC", "bCA", "CAb", "CbA"));
     }
 
     @Test
-    @DisplayName("Should throw exception for null input")
+    @DisplayName("Deve lançar exceção para entrada nula")
     void shouldThrowExceptionForNullInput() {
-        // Given
         String input = null;
 
-        // When & Then
         IllegalArgumentException exception = assertThrows(
             IllegalArgumentException.class,
             () -> anagramGenerator.generateAnagrams(input)
@@ -103,12 +86,10 @@ class AnagramGeneratorTest {
     }
 
     @Test
-    @DisplayName("Should throw exception for empty input")
+    @DisplayName("Deve lançar exceção para entrada vazia")
     void shouldThrowExceptionForEmptyInput() {
-        // Given
         String input = "";
 
-        // When & Then
         IllegalArgumentException exception = assertThrows(
             IllegalArgumentException.class,
             () -> anagramGenerator.generateAnagrams(input)
@@ -118,12 +99,11 @@ class AnagramGeneratorTest {
     }
 
     @Test
-    @DisplayName("Should throw exception for non-letter input")
+    @DisplayName("Deve lançar exceção para entrada não-letra")
     void shouldThrowExceptionForNonLetterInput() {
-        // Given
         String input = "a1b";
 
-        // When & Then
+        // Quando & Então
         IllegalArgumentException exception = assertThrows(
             IllegalArgumentException.class,
             () -> anagramGenerator.generateAnagrams(input)

@@ -3,14 +3,14 @@ package Projeto.java.question3;
 /**
  * API Mock do Stripe (simulando a biblioteca de terceiros).
  */
-public class StripeAPI {
+public class ExternalLibAPI {
     public PaymentResult charge(String customerId, double amount) {
-        System.out.println("Stripe: Charging $" + amount + " to customer " + customerId);
+        System.out.println("ExternalLib: Processing payment of $" + amount + " for customer " + customerId);
         return new PaymentResult(true, "ch_" + System.currentTimeMillis());
     }
 
     public RefundResult issueRefund(String chargeId) {
-        System.out.println("Stripe: Refunding charge " + chargeId);
+        System.out.println("ExternalLib: Refunding charge " + chargeId);
         return new RefundResult(true, "re_" + System.currentTimeMillis());
     }
 
