@@ -14,10 +14,6 @@ public class GlobalExceptionHandler {
     
     /**
      * Manipula exceções de código duplicado.
-     * 
-     * @param ex A exceção lançada
-     * @param request A requisição web
-     * @return Uma resposta com status 409 (Conflict)
      */
     @ExceptionHandler(DuplicateCodeException.class)
     public ResponseEntity<ErrorResponse> handleDuplicateCodeException(DuplicateCodeException ex, WebRequest request) {
@@ -31,10 +27,6 @@ public class GlobalExceptionHandler {
     
     /**
      * Manipula exceções de validação.
-     * 
-     * @param ex A exceção lançada
-     * @param request A requisição web
-     * @return Uma resposta com status 400 (Bad Request)
      */
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorResponse> handleValidationException(ValidationException ex, WebRequest request) {
@@ -48,10 +40,6 @@ public class GlobalExceptionHandler {
     
     /**
      * Manipula exceções de recurso não encontrado.
-     * 
-     * @param ex A exceção lançada
-     * @param request A requisição web
-     * @return Uma resposta com status 404 (Not Found)
      */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
@@ -65,10 +53,6 @@ public class GlobalExceptionHandler {
     
     /**
      * Manipula exceções de operação não autorizada.
-     * 
-     * @param ex A exceção lançada
-     * @param request A requisição web
-     * @return Uma resposta com status 403 (Forbidden)
      */
     @ExceptionHandler(UnauthorizedOperationException.class)
     public ResponseEntity<ErrorResponse> handleUnauthorizedOperationException(UnauthorizedOperationException ex, WebRequest request) {
@@ -82,10 +66,6 @@ public class GlobalExceptionHandler {
     
     /**
      * Manipula exceções genéricas.
-     * 
-     * @param ex A exceção lançada
-     * @param request A requisição web
-     * @return Uma resposta com status 500 (Internal Server Error)
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(Exception ex, WebRequest request) {

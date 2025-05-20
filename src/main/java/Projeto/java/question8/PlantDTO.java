@@ -35,8 +35,6 @@ public class PlantDTO {
     
     /**
      * Converte este DTO para uma entidade Plant.
-     * 
-     * @return Uma nova instância de Plant com os dados deste DTO
      */
     public Plant toEntity() {
         return new Plant(codigo, descricao);
@@ -44,9 +42,6 @@ public class PlantDTO {
     
     /**
      * Cria um DTO a partir de uma entidade Plant.
-     * 
-     * @param plant A entidade Plant
-     * @return Um novo DTO com os dados da entidade
      */
     public static PlantDTO fromEntity(Plant plant) {
         return new PlantDTO(plant.getCodigo(), plant.getDescricao());

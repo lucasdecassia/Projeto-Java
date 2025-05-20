@@ -11,8 +11,6 @@ public class PlantConfig {
     
     /**
      * Cria o bean do repositório de plantas.
-     * 
-     * @return Uma instância do repositório de plantas
      */
     @Bean
     public PlantRepository plantRepository() {
@@ -21,8 +19,6 @@ public class PlantConfig {
     
     /**
      * Cria o bean do serviço de usuários.
-     * 
-     * @return Uma instância do serviço de usuários
      */
     @Bean
     public UserService userService() {
@@ -31,10 +27,6 @@ public class PlantConfig {
     
     /**
      * Cria o bean do serviço de plantas.
-     * 
-     * @param plantRepository O repositório de plantas
-     * @param userService O serviço de usuários
-     * @return Uma instância do serviço de plantas
      */
     @Bean
     public PlantService plantService(PlantRepository plantRepository, UserService userService) {

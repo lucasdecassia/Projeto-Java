@@ -22,9 +22,6 @@ public class PlantController {
     
     /**
      * Cria uma nova planta.
-     * 
-     * @param plantDTO DTO com os dados da planta a ser criada
-     * @return A planta criada
      */
     @PostMapping
     public ResponseEntity<PlantDTO> createPlant(@RequestBody PlantDTO plantDTO) {
@@ -34,10 +31,6 @@ public class PlantController {
     
     /**
      * Atualiza uma planta existente.
-     * 
-     * @param code Código da planta a ser atualizada
-     * @param plantDTO DTO com os novos dados da planta
-     * @return A planta atualizada
      */
     @PutMapping("/{code}")
     public ResponseEntity<PlantDTO> updatePlant(@PathVariable String code, @RequestBody PlantDTO plantDTO) {
@@ -47,9 +40,6 @@ public class PlantController {
     
     /**
      * Busca uma planta pelo código.
-     * 
-     * @param code Código da planta
-     * @return A planta encontrada ou 404 se não existir
      */
     @GetMapping("/{code}")
     public ResponseEntity<PlantDTO> getPlantByCode(@PathVariable String code) {
@@ -60,9 +50,6 @@ public class PlantController {
     
     /**
      * Busca plantas pela descrição.
-     * 
-     * @param description Parte da descrição a ser buscada
-     * @return Lista de plantas que contêm a descrição informada
      */
     @GetMapping("/search")
     public ResponseEntity<List<PlantDTO>> searchPlantsByDescription(@RequestParam String description) {
@@ -74,8 +61,6 @@ public class PlantController {
     
     /**
      * Busca todas as plantas.
-     * 
-     * @return Lista com todas as plantas
      */
     @GetMapping
     public ResponseEntity<List<PlantDTO>> getAllPlants() {
@@ -87,9 +72,6 @@ public class PlantController {
     
     /**
      * Exclui uma planta.
-     * 
-     * @param code Código da planta a ser excluída
-     * @return 204 No Content se a exclusão for bem-sucedida
      */
     @DeleteMapping("/{code}")
     public ResponseEntity<Void> deletePlant(@PathVariable String code) {
