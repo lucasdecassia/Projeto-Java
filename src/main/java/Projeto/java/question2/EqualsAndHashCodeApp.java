@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * O codigo demonstra um cenário onde sobrescrever equals() e hashCode() em Java.
+ * O codigo demonstra onde sobrescrever equals() e hashCode().
  */
 public class EqualsAndHashCodeApp {
 

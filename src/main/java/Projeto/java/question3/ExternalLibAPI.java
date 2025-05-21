@@ -1,7 +1,7 @@
 package Projeto.java.question3;
 
 /**
- * API Mock do Stripe (simulando a biblioteca de terceiros).
+ * API Mock do ExternalLibAPI (simulando a biblioteca de terceiros).
  */
 public class ExternalLibAPI {
     public PaymentResult charge(String customerId, double amount) {

@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Os codigos demonstra técnicas para prevenir ataques de injeção SQL.
- * 
  * Injeção SQL é uma técnica de injeção de código que explora vulnerabilidades em aplicações
  * que interagem com bancos de dados. Ocorre quando a entrada do usuário é incorporada diretamente
  * em consultas SQL sem validação ou sanitização adequada.
@@ -25,7 +23,7 @@ public class SQLInjectionPrevention {
 
 
     /**
-     * Método principal para demonstrar técnicas de prevenção de injeção SQL.
+     * Método principal para demonstrar técnicas de prevenção.
      */
     public static void main(String[] args) {
         // Uma entrada maliciosa que poderia ser usada

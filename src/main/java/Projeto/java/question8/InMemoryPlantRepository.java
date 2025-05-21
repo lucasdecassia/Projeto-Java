@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 /**
- * Implementação em memória do repositório de plantas.
+ * Implementação do repositório de plantas.
  */
 @Repository
 public class InMemoryPlantRepository implements PlantRepository {

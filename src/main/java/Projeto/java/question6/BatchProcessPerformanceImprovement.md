@@ -12,7 +12,7 @@ Passos para diagnosticar e melhorar o desempenho de um processo em lote que inte
 - **Monitoramento de Sistema**: Ferramentas como Prometheus, Grafana ou New Relic para monitorar recursos do sistema.
 - **Registro de Logs**: Logs detalhados com carimbos de data/hora para rastrear o tempo de execução de diferentes componentes.
 
-**Exemplo**
+**Exemplo->**
 
 ```java
 public void processarLote() {
@@ -41,7 +41,7 @@ public void processarLote() {
 - **Análise de Índices**: Verificar se os índices apropriados estão sendo usados.
 - **Monitoramento de Pool de Conexões**: Verificar se as configurações do pool de conexões estão otimizadas.
 
-**Exemplo de análise de uma consulta com EXPLAIN:**
+**Exemplo de análise de uma consulta com EXPLAIN->**
 
 ```sql
 EXPLAIN SELECT * FROM tabela_grande WHERE coluna_nao_indexada = 'valor';
@@ -80,7 +80,7 @@ CREATE INDEX idx_cliente_id ON pedidos(cliente_id);
 - **Operações em Massa**: Inserções/atualizações em massa em vez de operações individuais.
 - **Pool de Conexões**: Otimizar as configurações do pool de conexões.
 
-**Exemplo de inserção em massa em Java:**
+**Exemplo de inserção em massa em Java->**
 
 ```java
 public void inserirEmMassa(List<Pedido> pedidos) {
@@ -121,7 +121,7 @@ public void inserirEmMassa(List<Pedido> pedidos) {
 - **Reutilização de Conexão**: Conexões FTP em vez de criar novas.
 - **Protocolos Alternativos**: Usar SFTP ou FTPS para melhor desempenho e segurança.
 
-**Exemplo de transferência paralela de arquivos:**
+**Exemplo de transferência paralela de arquivos->**
 
 ```java
 public void transferirArquivosEmParalelo(List<File> arquivos, String destino) {
@@ -155,7 +155,7 @@ public void transferirArquivosEmParalelo(List<File> arquivos, String destino) {
 - **Estruturas de Dados**: Estruturas de dados apropriadas para melhor desempenho.
 - **Melhorias Algorítmicas**: Algoritmos para melhor complexidade de tempo.
 
-**Exemplo de implementação de cache:**
+**Exemplo de implementação de cache->**
 
 ```java
 public class CacheCliente {
@@ -249,7 +249,3 @@ public class CacheCliente {
    - iperf
    - netstat
    - tcpdump
-
-## Conclusão
-
-Melhorar o desempenho de processos em lote requer uma abordagem sistemática para identificar e resolver gargalos. Ao analisar e otimizar consultas de banco de dados, transferências FTP, código de aplicação e configuração do sistema, melhorias significativas de desempenho podem ser alcançadas. Monitoramento e ajustes regulares são essenciais para manter o desempenho ideal à medida que os volumes de dados e requisitos evoluem.

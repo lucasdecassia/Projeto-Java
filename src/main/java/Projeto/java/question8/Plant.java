@@ -1,5 +1,8 @@
 package Projeto.java.question8;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -7,6 +10,8 @@ import java.util.Objects;
  * Representa uma planta no sistema.
  * Cada planta tem um código único e uma descrição opcional.
  */
+@Getter
+@Setter
 public class Plant {
     private Long id;
     private String codigo;
@@ -23,63 +28,6 @@ public class Plant {
     public Plant(String codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
-    }
-
-    // Getters e setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getCriadoPor() {
-        return criadoPor;
-    }
-
-    public void setCriadoPor(String criadoPor) {
-        this.criadoPor = criadoPor;
-    }
-
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getUltimaModificacaoPor() {
-        return ultimaModificacaoPor;
-    }
-
-    public void setUltimaModificacaoPor(String ultimaModificacaoPor) {
-        this.ultimaModificacaoPor = ultimaModificacaoPor;
-    }
-
-    public LocalDateTime getDataUltimaModificacao() {
-        return dataUltimaModificacao;
-    }
-
-    public void setDataUltimaModificacao(LocalDateTime dataUltimaModificacao) {
-        this.dataUltimaModificacao = dataUltimaModificacao;
     }
 
     @Override

@@ -2,7 +2,7 @@ package Projeto.java.question3;
 
 /**
  * Aqui demostro como podemos usar um padrão de projeto para desacoplar código de uma biblioteca de terceiros
- * que pode ser substituída no futuro.
+ * Usando o designer pattern Strategy
  */
 public class DecouplingApp {
 
@@ -22,6 +22,6 @@ public class DecouplingApp {
     /**
      * 
      * 1. O código de aplicação depende da interface PaymentProcessor, onde pode obtar por meio de um adaptador.
-     * 2. Facilmente pode alternar entre diferentes provedores de pagamento criando novos adaptadores, pois é so implementar a interface de contrato.
+     * 2. Podendo alternar entre diferentes provedores de pagamento criando novos adaptadores, pois apenas implementa a interface de contrato.
      */
 
