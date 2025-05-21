@@ -33,10 +33,9 @@ Eu usei Angular para trabalhar em um sistema de pagamentos, onde clientes tinham
 tela de vendas e etc
 
 
+Uma das telas de dashboard em Angular ->
 
-
-
-
+![Captura de Tela 2025-05-20 às 14 37 19](https://github.com/user-attachments/assets/c1af481c-ef0f-4fbb-9e77-35f8839eaf16)
 
 
 
