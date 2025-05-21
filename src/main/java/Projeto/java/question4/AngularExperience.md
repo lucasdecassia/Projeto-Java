@@ -1,8 +1,9 @@
 # Experiência com Angular
 
 ## Principais casos de uso
-1. NGMODEL que faz o two databind que atualiza o valor do front de acordo com a mudança de estado
-2. Controlar o fluxo de vida da aplicaçao que é NG on init, ng on changes, ng after view
+1. ngModel que faz o two-way data binding que atualiza o valor do front de acordo com a mudança de estado
+2. Controlar o fluxo de vida da aplicaçao que é ngOnInit que é execultado apos a inicialização, ngOnChanges que é chamado quando ha mudancas, ngAfterViewinit 
+que é disparado apos a renderização.
 3. E comparaçao com react, a organizacao/estrutura do angular é melhor
 
 ```typescript
