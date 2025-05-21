@@ -1,7 +1,9 @@
 package Projeto.java.question8;
 
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
- @DataJpaTest
+@ExtendWith(MockitoExtension.class)
  @DisplayName("Testes do Repositório de Usuário")
  public class UserRepositoryTest {
 

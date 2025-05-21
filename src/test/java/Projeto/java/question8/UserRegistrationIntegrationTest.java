@@ -1,7 +1,9 @@
 package Projeto.java.question8;
 
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
 @DisplayName("Testes de Integração de Registro de Usuário")
 class UserRegistrationIntegrationTest {
 

@@ -1,6 +1,9 @@
 package Projeto.java.question8;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
 @DisplayName("Testes E2E de Registro de Usuário")
 class UserRegistrationE2ETest {
 

@@ -1,6 +1,9 @@
 package Projeto.java.question8;
 
-@WebMvcTest(UserController.class)
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
 @DisplayName("Testes do Controlador de Usuário")
 class UserControllerTest {
 
