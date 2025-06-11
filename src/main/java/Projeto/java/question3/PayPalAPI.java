@@ -1,8 +1,6 @@
 package Projeto.java.question3;
 
-/**
- * API Mock do PayPal (simulando a biblioteca de terceiros).
- */
+//API Mock do PayPal (simulando a biblioteca de terceiros).
 public class PayPalAPI {
     public String makePayment(String customerId, double amount) {
         System.out.println("PayPal: Processing payment of $" + amount + " for customer " + customerId);

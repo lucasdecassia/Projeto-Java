@@ -5,9 +5,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Serviço responsável por gerenciar operações relacionadas a plantas.
- */
 @Service
 public class PlantService {
     private final PlantRepository plantRepository;
@@ -18,9 +15,6 @@ public class PlantService {
         this.userService = userService;
     }
 
-    /**
-     * Cria uma nova planta no sistema.
-     */
     public Plant createPlant(Plant plant) {
         validatePlant(plant);
 
@@ -40,9 +34,6 @@ public class PlantService {
         return plantRepository.save(plant);
     }
 
-    /**
-     * Atualiza uma planta existente.
-     */
     public Plant updatePlant(String code, Plant plant) {
         validatePlant(plant);
 
@@ -66,9 +57,6 @@ public class PlantService {
         return plantRepository.save(existingPlant);
     }
 
-    /**
-     * Exclui uma planta do sistema.
-     */
     public void deletePlant(String code) {
         if (!userService.isCurrentUserAdmin()) {
             throw new UnauthorizedOperationException("Apenas administradores podem excluir plantas");
@@ -80,30 +68,18 @@ public class PlantService {
         plantRepository.delete(plant);
     }
 
-    /**
-     * Busca uma planta pelo código.
-     */
     public Optional<Plant> findPlantByCode(String code) {
         return plantRepository.findByCode(code);
     }
 
-    /**
-     * Busca plantas pela descrição (busca parcial).
-     */
     public List<Plant> findPlantsByDescription(String description) {
         return plantRepository.findByDescriptionContaining(description);
     }
 
-    /**
-     * Busca todas as plantas do sistema.
-     */
     public List<Plant> findAllPlants() {
         return plantRepository.findAll();
     }
 
-    /**
-     * Valida os dados de uma planta.
-     */
     private void validatePlant(Plant plant) {
         if (plant.getCodigo() == null || plant.getCodigo().isEmpty()) {
             throw new ValidationException("O código da planta é obrigatório");

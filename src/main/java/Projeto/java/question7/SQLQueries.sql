@@ -1,4 +1,3 @@
--- Consultas SQL baseadas nas tabelas fornecidas
 
 -- Tabelas:
 -- Salesperson (ID, Nome, Idade, Salário)

@@ -5,13 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- *
- * O codigo gerar todos os anagramas possíveis
- * a partir de um conjunto de letras distintas. Incluindo validação para garantir
- * que a entrada seja válida! (não vazia e sendo apenas letras).
- * Os testes estão no pacote de test do projeto
- */
 public class AnagramGenerator {
     //O metodo ira receber char, pois char é mutavel e pode ser modificado... Mas se fosse String teria que ficar criando uma nova String.
     //Pois ha uma alternação no swap
@@ -44,7 +37,6 @@ public class AnagramGenerator {
         }
     }
 
-   //Método auxiliar para gerar anagramas usando backtracking.
     //Aqui o fluxo funcina como se fosse -> “Tenta algo, vê no que dá, e se não der, volta atrás e tenta de novo de outro jeito.”
     private void generateAnagramsHelper(char[] letters, int start, Set<String> result) {
         if (start == letters.length - 1) {

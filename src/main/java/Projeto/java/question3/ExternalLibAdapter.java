@@ -1,8 +1,5 @@
 package Projeto.java.question3;
 
-/**
- * Esta classe adapta a biblioteca ExternalLib para a interface PaymentProcessor.
- */
 public class ExternalLibAdapter implements PaymentProcessor {
     private final ExternalLibAPI stripeAPI = new ExternalLibAPI();
 

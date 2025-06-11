@@ -1,18 +1,8 @@
 # Melhorando o Desempenho de Processos em Lote
 
-Passos para diagnosticar e melhorar o desempenho de um processo em lote que interage com um banco de dados e um servidor FTP.
-
 ## Etapas de Diagnóstico
 
 ### 1. Perfilamento e Monitoramento
-
-**Ferramentas e Técnicas:**
-- **Perfiladores de Aplicação**: Ferramentas como VisualVM, YourKit ou JProfiler para identificar gargalos de CPU e memória.
-- **Monitoramento de Banco de Dados**: Frramentas como Oracle Enterprise Manager, MySQL Workbench ou PostgreSQL pgAdmin para monitorar o desempenho do banco de dados.
-- **Monitoramento de Sistema**: Ferramentas como Prometheus, Grafana ou New Relic para monitorar recursos do sistema.
-- **Registro de Logs**: Logs detalhados com carimbos de data/hora para rastrear o tempo de execução de diferentes componentes.
-
-**Exemplo->**
 
 ```java
 public void processarLote() {
@@ -35,24 +25,11 @@ public void processarLote() {
 
 ### 2. Análise de Desempenho do Banco de Dados
 
-**Técnicas:**
-- **Planos de Execução**: Os planos de execução de consultas para identificar consultas ineficientes.
-- **Log de Consultas Lentas**: Habilitar e analisar o log de consultas lentas do banco de dados.
-- **Análise de Índices**: Verificar se os índices apropriados estão sendo usados.
-- **Monitoramento de Pool de Conexões**: Verificar se as configurações do pool de conexões estão otimizadas.
-
-**Exemplo de análise de uma consulta com EXPLAIN->**
-
 ```sql
 EXPLAIN SELECT * FROM tabela_grande WHERE coluna_nao_indexada = 'valor';
 ```
 
-### 3. Análise de E/S e Rede
-
-**Técnicas:**
-- **Monitoramento de Rede**: Ferramentas como Wireshark ou iperf para analisar o desempenho da rede.
-- **Monitoramento de E/S de Disco**: Ferramentas como iostat (Linux) ou Monitor de Desempenho (Windows) para verificar E/S de disco.
-- **Configuração do Cliente FTP**: Revisar as configurações do cliente FTP para modo de transferência, tamanho do buffer, etc.
+### 3. Análise de E/S e Rede 
 
 ## Estratégias de Melhoria de Desempenho
 
@@ -60,27 +37,11 @@ EXPLAIN SELECT * FROM tabela_grande WHERE coluna_nao_indexada = 'valor';
 
 #### Otimização de Consultas
 
-**Técnicas:**
-- **Indexação**: Adicionar índices apropriados para acelerar consultas.
-- **Reescrita de Consultas**: Reescrever consultas ineficientes para usar índices e reduzir a varredura de dados.
-- **Particionamento**: Implementar particionamento de tabelas para tabelas grandes.
-- **Visões Materializadas**: Visões materializadas para consultas complexas e frequentemente usadas.
-
-**Exemplo de adição de um índice:**
-
 ```sql
 CREATE INDEX idx_cliente_id ON pedidos(cliente_id);
 ```
 
 #### Otimização de Processamento em Lote
-
-**Técnicas:**
-- **Ajuste de Tamanho do Lote**: Encontrar o tamanho ideal de lote para inserções/atualizações.
-- **Declarações Preparadas**: Declarações preparadas para consultas repetidas.
-- **Operações em Massa**: Inserções/atualizações em massa em vez de operações individuais.
-- **Pool de Conexões**: Otimizar as configurações do pool de conexões.
-
-**Exemplo de inserção em massa em Java->**
 
 ```java
 public void inserirEmMassa(List<Pedido> pedidos) {
@@ -114,13 +75,6 @@ public void inserirEmMassa(List<Pedido> pedidos) {
 
 ### 2. Otimização de Transferência FTP
 
-**Técnicas:**
-- **Transferências Paralelas**: Implementar transferências de arquivos multi-thread.
-- **Compressão**: Usar compressão para transferências de arquivos.
-- **Ajuste de Tamanho do Buffer**: Otimizar os tamanhos de buffer para transferências de arquivos.
-- **Reutilização de Conexão**: Conexões FTP em vez de criar novas.
-- **Protocolos Alternativos**: Usar SFTP ou FTPS para melhor desempenho e segurança.
-
 **Exemplo de transferência paralela de arquivos->**
 
 ```java
@@ -148,15 +102,6 @@ public void transferirArquivosEmParalelo(List<File> arquivos, String destino) {
 
 ### 3. Otimização em Nível de Aplicação
 
-**Técnicas:**
-- **Paralelização**: Multi-threading para tarefas intensivas de CPU.
-- **Cache**: Cache para dados acessados com frequência.
-- **Gerenciamento de Memória**: Otimizar as configurações de memória da JVM.
-- **Estruturas de Dados**: Estruturas de dados apropriadas para melhor desempenho.
-- **Melhorias Algorítmicas**: Algoritmos para melhor complexidade de tempo.
-
-**Exemplo de implementação de cache->**
-
 ```java
 public class CacheCliente {
     private final Map<Long, Cliente> cache = new ConcurrentHashMap<>();
@@ -181,13 +126,6 @@ public class CacheCliente {
 ```
 
 ### 4. Otimização em Nível de Sistema
-
-**Técnicas:**
-- **Atualizações de Hardware**: Adicione mais CPU, memória ou discos mais rápidos, se necessário.
-- **Melhorias de Rede**: Atualizar a infraestrutura de rede para transferências mais rápidas.
-- **Balanceamento de Carga**: Distribuir a carga entre vários servidores.
-- **Ajuste de Banco de Dados**: Otimizar a configuração do servidor de banco de dados.
-- **Ajuste do SO**: Otimizar as configurações do sistema operacional para E/S e rede.
 
 ## Estudo de Caso: Otimizando um Processo em Lote de Dados de Clientes
 

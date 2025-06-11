@@ -1,8 +1,6 @@
 package Projeto.java.question3;
 
-/**
- *Classe que adapta a biblioteca do PayPal para interface PaymentProcessor.
- */
+//classe que adapta a biblioteca do PayPal para interface PaymentProcessor.
 public class PayPalPaymentAdapter implements PaymentProcessor {
     private final PayPalAPI payPalAPI = new PayPalAPI();
 

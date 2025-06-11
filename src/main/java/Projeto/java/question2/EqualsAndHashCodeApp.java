@@ -3,10 +3,7 @@ package Projeto.java.question2;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * O codigo demonstra onde sobrescrever equals() e hashCode().
- */
-public class EqualsAndHashCodeApp {
+class EqualsAndHashCodeApp {
 
     public static void main(String[] args) {
         Customer customer1 = new Customer(1L, "Lucas de Cassia", "lucas@java.com");
